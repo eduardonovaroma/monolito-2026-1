@@ -1,5 +1,6 @@
+import 'dotenv/config';
 import express from 'express';
-import webRoutes from './routes/web.js';
+import web from './routes/web.js';
 
 const app = express();
 
@@ -8,10 +9,18 @@ app.use(express.static('public'));
 app.set("view engine", "ejs");
 app.set("views", ["./views"]);
 
-app.use("/", webRoutes);
+// Este middleware precisa executar antes das rotas que renderizam os templates.
+app.use(function(req, res, next) {
+  res.locals.isActive = function(path) {
+    return req.path === path ? "active" : "";
+  }
+  next();
+});
 
-const PORT = 3000;
+app.use(web);
+
+const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
-  console.log("Server is running on port: " + PORT);
+  console.log("Server is running on port: http://localhost:" + PORT);
 });

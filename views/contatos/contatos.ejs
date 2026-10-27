@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-br">
+
+<%- include("includes/headers"); %>
+
+<body>
+    <%- include("includes/navbar"); %>
+    
+    <div class="container">
+        <h1>Contatos</h1>
+
+        <a class="btn btn-primary" href="/contatos/new" role="button">Novo Contato</a>
+    
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% contatos.forEach(contato => { %>
+                    <tr>
+                        <td><%= contato.nome %></td>
+                        <td><%= contato.email %></td>
+                        <td>
+                            <a class="btn btn-sm btn-outline-primary" href="/contatos/<%= contato.id %>/edit" role="button">Editar</a>
+                            <a class="btn btn-sm btn-outline-danger" href="/contatos/<%= contato.id %>/delete" role="button">Excluir</a>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    
+    </div>
+
+    <%- include("includes/footer"); %>
+</body>
+
+</html>
