@@ -19,6 +19,9 @@ app.use(function(req, res, next) {
 
 app.use(web);
 
+import { sequelize, createDatabase } from './core/sequelize.js';
+createDatabase(sequelize);
+
 const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
