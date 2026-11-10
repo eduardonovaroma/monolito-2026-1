@@ -1,11 +1,14 @@
 import 'dotenv/config';
 import express from 'express';
 import web from './routes/web.js';
+import api from './routes/api.js';
 
 const app = express();
 
 // Configuração EJS
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true })); // lê os dados enviados pelos formulários (req.body)
+app.use(express.json()); // lê os dados enviados em JSON (req.body) pela API
 app.set("view engine", "ejs");
 app.set("views", ["./views"]);
 
@@ -18,6 +21,7 @@ app.use(function(req, res, next) {
 });
 
 app.use(web);
+app.use('/api', api);
 
 import { sequelize, createDatabase } from './core/sequelize.js';
 createDatabase(sequelize);

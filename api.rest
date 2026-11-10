@@ -1,0 +1,31 @@
+@baseUrl = http://localhost:3000/api
+@id = 1
+
+### Listar contatos
+GET {{baseUrl}}/contatos
+
+### Buscar contato por id
+GET {{baseUrl}}/contatos/{{id}}
+
+### Criar contato
+POST {{baseUrl}}/contatos
+Content-Type: application/json
+
+{
+    "nome": "Maria Silva",
+    "email": "maria@email.com",
+    "telefone": "(81) 99999-0000"
+}
+
+### Atualizar contato
+PUT {{baseUrl}}/contatos/{{id}}
+Content-Type: application/json
+
+{
+    "nome": "Maria Silva Souza",
+    "email": "maria.souza@email.com",
+    "telefone": "(81) 98888-1111"
+}
+
+### Excluir contato
+DELETE {{baseUrl}}/contatos/{{id}}

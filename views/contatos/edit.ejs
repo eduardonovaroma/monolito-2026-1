@@ -5,9 +5,33 @@
 
 <body>
     <%- include("includes/navbar"); %>
-    
+
+    <% const contato = locals.contato || { id: locals.contatoId }; %>
+
     <div class="container">
-        <h1>Editar Contato <%= contatoId %></h1>
+        <h1>Editar Contato <%= contato.id %></h1>
+
+        <form action="/contatos/atualizar" method="POST">
+            <input type="hidden" name="id" value="<%= contato.id %>">
+
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="nome" name="nome" maxlength="100" value="<%= contato.nome || '' %>" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" maxlength="200" value="<%= contato.email || '' %>">
+            </div>
+
+            <div class="mb-3">
+                <label for="telefone" class="form-label">Telefone</label>
+                <input type="tel" class="form-control" id="telefone" name="telefone" maxlength="20" value="<%= contato.telefone || '' %>">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Atualizar</button>
+            <a href="/contatos" class="btn btn-secondary">Cancelar</a>
+        </form>
     </div>
 
     <%- include("includes/footer"); %>

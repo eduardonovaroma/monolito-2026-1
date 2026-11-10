@@ -9,13 +9,14 @@
     <div class="container">
         <h1>Contatos</h1>
 
-        <a class="btn btn-primary" href="/contatos/new" role="button">Novo Contato</a>
+        <a class="btn btn-primary" href="/contatos/novo" role="button">Novo Contato</a>
     
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">Nome</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Data e Hora</th>
                     <th scope="col">Ações</th>
                 </tr>
             </thead>
@@ -24,9 +25,13 @@
                     <tr>
                         <td><%= contato.nome %></td>
                         <td><%= contato.email %></td>
+                        <td><%= contato.createdAt.toLocaleString() %></td>
                         <td>
                             <a class="btn btn-sm btn-outline-primary" href="/contatos/<%= contato.id %>/edit" role="button">Editar</a>
-                            <a class="btn btn-sm btn-outline-danger" href="/contatos/<%= contato.id %>/delete" role="button">Excluir</a>
+                            <form action="/contatos/<%= contato.id %>/excluir" method="POST" class="d-inline"
+                                onsubmit="return confirm('Deseja realmente excluir este contato?');">
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Excluir</button>
+                            </form>
                         </td>
                     </tr>
                 <% }); %>

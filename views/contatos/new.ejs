@@ -5,9 +5,29 @@
 
 <body>
     <%- include("includes/navbar"); %>
-    
+
     <div class="container">
         <h1>Novo Contato</h1>
+
+        <form action="/contatos/salvar" method="POST">
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="nome" name="nome" maxlength="100" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" maxlength="200">
+            </div>
+
+            <div class="mb-3">
+                <label for="telefone" class="form-label">Telefone</label>
+                <input type="tel" class="form-control" id="telefone" name="telefone" maxlength="20">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a href="/contatos" class="btn btn-secondary">Cancelar</a>
+        </form>
     </div>
 
     <%- include("includes/footer"); %>
